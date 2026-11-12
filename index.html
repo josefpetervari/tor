@@ -20,7 +20,7 @@
 <pre><code class="language-c" id="cCode"></code></pre>
 
 <script>
-const code = `
+const code = '
 
 
 
@@ -728,8 +728,10 @@ int main(void)
 		}
 	}
 }
-
-
+	';
+document.getElememtById("cCode").text Content = cCode
+Prism.HighlightElement(documentById("cCode")
+);
 
 
 
