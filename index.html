@@ -8,7 +8,28 @@
 </head>
 <body>
      <!-- HTML-Code mit Prism hervorheben -->
-    <pre><code class="language-c">
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Prism JavaScript -->
+    <script src="https://cloudflare.com"></script>
+  <script language="JavaScript" src="https://www.besucherzaehler-kostenlos.de/js/counter.js.php?count=1&id=atmega1284p.de&start=0&design=2e"></script>
+   <p> Besucher </p>
+    <h1>Hallo Welt!</h1>
+    <p>Hier ensteht meine Website</p>
+
+    <button onclick="alert('Hallo!')">
+        Klick mich
+    </button>
+	    <pre><code class="language-c">
 		
 		
 
@@ -719,24 +740,136 @@ int main(void)
 
 </code></pre>
 
+void hurt(char rest){
+	
+	uint8_t suppe;
+	uint8_t i=0;
+	switch (rest){
+		
+		case '0':
+		ptr = zur;
+		break;
+		case '1':
+		ptr = zur1;
+		break;
+		default:
+		return;
+
+	}
+
+	
+	
+	for(int u=0;u<8;u++){
+		selectchip(1);
+		suppe = pgm_read_byte(ptr+i);
+	lcd_daten(suppe);}
 
 
 
 
 
+}
+
+
+void lcd1(char* buffer){
+	int outl,i;
+	char zeichen;
+	outl =strlen(buffer);
+	
+	
+	for(i=0;i<outl;i++){
+		zeichen = buffer[i];
+		hurt(zeichen);
+	}
+	
+}
+void rost(void){
+if(strcmp((char *)empfangsstring,"bild")==0){
+lcd	(werte);}
+if(strcmp((char *)empfangsstring,"bild1")==0){
+lcd	(werte1);}	
+	
+}
+
+void reader(char *bufer){
+	int outl,i;
+	char zeichen;
+	outl = strlen(bufer);
+	while(1){
+		for (i=0;i<outl;i++){
+			
+			zeichen = bufer[i];
+			PORTC=zeichen;
+			
+		
+			if(strcmp((char *)empfangsstring,"end")==0){
+				//PORTC = 0x00;
+			return;}
+		_delay_ms(100);}
+	}
+}
+
+int main(void)
+{
+	
+	MCUCR |= (1<<JTD);
+	MCUCR |= (1<<JTD);
+	DDRA =0xFF;
+	DDRB = 0xFF;
+	// USART starten
+	USART0_Init();
+	lcd_init();
+	lcd(werte2);
+	lcd1("01010101");
+	DDRC = 0xFF;
+	// Globale Interrupts einschalten
+	sei();
 
 
 
+	
+	USART0_SendString("ATmega1284P gestartet\r\n");
 
-    <!-- Prism JavaScript -->
-    <script src="https://cloudflare.com"></script>
-  <script language="JavaScript" src="https://www.besucherzaehler-kostenlos.de/js/counter.js.php?count=1&id=atmega1284p.de&start=0&design=2e"></script>
-   <p> Besucher </p>
-    <h1>Hallo Welt!</h1>
-    <p>Hier ensteht meine Website</p>
+	USART0_SendString("Bitte Text eingeben:\r\n");
 
-    <button onclick="alert('Hallo!')">
-        Klick mich
-    </button>
+	while (1)
+	{
+		// ------------------------------------------------
+		// Wurde ein kompletter String empfangen?
+		// ------------------------------------------------
+
+		if (string_fertig)
+		{
+			// Flag zurücksetzen
+			string_fertig = 0;
+
+			// Empfangenen String zurücksenden
+			USART0_SendString("Empfangen: ");
+
+			USART0_SendString((const char *)empfangsstring);
+
+			USART0_SendString("\r\n");
+
+			if(strcmp((char *)empfangsstring,"wert")==0){
+			reader("qwztfdqzwfduzqwf\r\n");}
+		if(strcmp((char *)empfangsstring,"bild")==0){
+		lcd	(werte);}
+		if(strcmp((char *)empfangsstring,"bild1")==0){
+		lcd	(werte1);}
+			// Beispiel:
+			// Befehl "ende"
+			if (empfangsstring[0] == 'e' &&
+			empfangsstring[1] == 'n' &&
+			empfangsstring[2] == 'd' &&
+			empfangsstring[3] == 'e' &&
+			empfangsstring[4] == '\0')
+			{
+				USART0_SendString("Befehl ENDE erkannt\r\n");
+			}
+		}
+	}
+}
+
+</code></pre>
 </body>
 </html>
